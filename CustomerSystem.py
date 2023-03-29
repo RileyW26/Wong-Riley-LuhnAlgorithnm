@@ -22,11 +22,14 @@ def enterCustomerInfo():
     print("Input your city")
     city = input("> ")
     print("Input Postal Code")
-    postal = input("> ")
-    if validatePostalCode(postal):
-        print("Valid Postal Code")
-    else:
-        print("Your Postal Code was not valid, please try again.")
+    while True:
+        postal = input("> ")
+        if validatePostalCode(postal):
+            print("Valid Postal Code")
+            break
+        else:
+            print("Your Postal Code was not valid, please try again.")
+    
     print("Input Credit Card")
     while True:
         ccard = int(input("> "))
@@ -43,10 +46,24 @@ def enterCustomerInfo():
     You may place as many or as few parameters as needed
     This function may also be broken down further depending on your algorithm/approach
 '''
-def validatePostalCode():
+def validatePostalCode(postal):
     folder = os.getcwd()
-    
-
+    filename = folder + "\\Wong Riley LuhnAlgorithnm\\postal_codes.csv"
+    file = open(filename, "r")
+    line = file.readlines()
+    a = len(line)
+    print(postal[:3])
+    if len(postal)<3:
+        return False
+    else:
+        for i in range(1, a):
+            currentLine = (line[i])
+            currentPostal = currentLine[:3]
+            if postal[:3]== currentPostal:
+                return True
+            else:
+                continue
+        return False    
 '''
     This function is to be edited to achieve the task.
     It is your decision to make this function a procedural or functional type
@@ -57,7 +74,6 @@ def validateCreditCard(num):
     sum1 = 0
     sum2 = 0
     reverse = str(num)[::-1]
-    print(reverse)
     length = len(reverse)
     if length < 9:
         return False
