@@ -38,7 +38,7 @@ def enterCustomerInfo():
             break
         else:
             print("Your credit card was not valid, please try again")
-    return fname, lname, city
+    return fname, lname, city, postal, ccard
 
 '''
     This function is to be edited to achieve the task.
@@ -63,6 +63,7 @@ def validatePostalCode(postal):
                 return True
             else:
                 continue
+        file.close
         return False    
 '''
     This function is to be edited to achieve the task.
@@ -106,7 +107,11 @@ def validateCreditCard(num):
 '''
 def generateCustomerDataFile():
     folder = os.getcwd()
-    print(folder)
+    filename = folder + "\\Wong Riley LuhnAlgorithnm\\Users.csv"
+    file = open(filename, "w")
+    file.writelines(info)
+    file.close
+
     #fileName = folder + "\\python\\Wong Riley LuhnAlgorithnm\\Users\\" + str(count) + ".text"
     #file = open(fileName, "w")
     #file.writelines(enterCustomerInfo())
@@ -139,7 +144,7 @@ while userInput != exitCondition:
     if userInput == enterCustomerOption:
         # Only the line below may be editted based on the parameter list and how you design the method return
         # Any necessary variables may be added to this if section, but nowhere else in the code
-        enterCustomerInfo()
+        info = enterCustomerInfo()
 
     elif userInput == generateCustomerOption: 
         # Only the line below may be editted based on the parameter list and how you design the method return
