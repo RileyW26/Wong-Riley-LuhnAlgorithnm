@@ -22,23 +22,18 @@ def enterCustomerInfo():
     print("Input your city")
     city = input("> ")
     print("Input Postal Code")
-    while True:
+    postal = input("> ")
+    while validatePostalCode(postal) == False:
+        print("Your Postal Code was not valid, please try again.")
         postal = input("> ")
-        if validatePostalCode(postal):
-            print("Valid Postal Code")
-            break
-        else:
-            print("Your Postal Code was not valid, please try again.")
-    
+    print("Valid Postal Code")
     print("Input Credit Card")
-    while True:
-        ccard = int(input("> "))
-        if validateCreditCard(ccard):
-            print("Credit Card accepted")
-            break
-        else:
+    ccard = int(input("> "))
+    while validateCreditCard(ccard) == False:
             print("Your credit card was not valid, please try again")
-    return fname,", ", lname,", ", city, ", ", postal, ", ", str(ccard)
+            ccard = int(input("> "))
+    print("Credit Card accepted")
+    return fname, lname, city, postal, ccard
 
 '''
     This function is to be edited to achieve the task.
@@ -111,17 +106,18 @@ def generateCustomerDataFile():
     fileExists = exists(filename)
     if fileExists == False:
         file = open(filename, "w")
-        file.writelines("ID, First Name, Last Name, Postal Code, CreditCard\n")
-        file.writelines("1. ",info)
+        file.writelines("ID, First Name, Last Name, City, Postal Code, CreditCard\n")
+        file.writelines("1. "+ info+"\n")
         file.close
     elif fileExists == True:
         file = open(filename, "r")
         line = file.readlines()
         lineCount = int(len(line))
-        id = str((lineCount + 1))
         file.close
         file = open(filename, "a")
-        file.writelines(id + info)
+        id = str(lineCount) + ". "
+        print(id)
+        file.writelines(id + info +"\n")
         file.close
 
     #fileName = folder + "\\python\\Wong Riley LuhnAlgorithnm\\Users\\" + str(count) + ".text"
@@ -156,7 +152,7 @@ while userInput != exitCondition:
     if userInput == enterCustomerOption:
         # Only the line below may be editted based on the parameter list and how you design the method return
         # Any necessary variables may be added to this if section, but nowhere else in the code
-        info = enterCustomerInfo()
+        info = str(enterCustomerInfo())
 
     elif userInput == generateCustomerOption: 
         # Only the line below may be editted based on the parameter list and how you design the method return

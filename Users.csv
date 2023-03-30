@@ -1,1 +1,3 @@
-ID, First Name, Last Name, Postal Code, CreditCard
+ID, First Name, City, Last Name, Postal Code, CreditCard
+1. ('riley', 'wong', 'markham', 'L6E', 378282246310005)
+2. ('riley', 'wong', 'markham', 'L6E', 378282246310005)
