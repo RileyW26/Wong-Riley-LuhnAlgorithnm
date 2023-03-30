@@ -23,10 +23,19 @@ def enterCustomerInfo():
     '''
     print("Input your first name")
     fname = input("> ")
+    while fname =="":
+        print("This is a required field, please do not leave blank.")
+        fname = input("> ")
     print("Input your last name")
     lname = input("> ")
+    while lname == "":
+        print("This is a required field, please do not leave blank.")
+        lname = input("> ")
     print("Input your city")
     city = input("> ")
+    while city=="":
+        print("This is a required field, please do not leave blank.")
+        city = input("> ")
     print("Input Postal Code")
     postal = input("> ")
     while validatePostalCode(postal) == False:
@@ -83,7 +92,7 @@ def validateCreditCard(num):
     sum2 = 0
     reverse = str(num)[::-1]
     length = len(reverse)
-    if length < 9:
+    if length < 9 or length >16:
         return False
     else:
         for i in range(length):
