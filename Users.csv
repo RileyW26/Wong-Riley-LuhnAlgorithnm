@@ -1,3 +1,4 @@
-ID, First Name, City, Last Name, Postal Code, CreditCard
-1. ('riley', 'wong', 'markham', 'L6E', 378282246310005)
-2. ('riley', 'wong', 'markham', 'L6E', 378282246310005)
+ID, First Name, Last Name, City, Postal Code, CreditCard
+1. riley, wong, markham, L6E, 378282246310005, 
+2. ryan, tan, markham, L6E, 378282246310005, 
+3 | riley | wong | markham | L6E | 378282246310005 | 

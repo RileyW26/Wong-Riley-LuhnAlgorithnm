@@ -5,6 +5,9 @@
 # More packages may be imported in the space below if approved by your instructor
 import os
 def printMenu():
+    '''
+    prints a menu that outlines what users can input and where it will direct them
+    '''
     print("Customer and Sales System\n 1. Enter Customer Information\n 2. Generate Customer data file\n 3. Report on total Sales (Not done in this part)\n 4. Check for fraud in sales data (Not done in this part)\n 9. Quit\nEnter menu option (1-9)")
           
 
@@ -15,6 +18,9 @@ def printMenu():
     This function may also be broken down further depending on your algorithm/approach
 '''
 def enterCustomerInfo():
+    '''
+    Asks the user for their Firstname, Last Name, City, Postal code then runs the function to validate it, and credicard and runs the function to valdiate it.
+    '''
     print("Input your first name")
     fname = input("> ")
     print("Input your last name")
@@ -33,7 +39,8 @@ def enterCustomerInfo():
             print("Your credit card was not valid, please try again")
             ccard = int(input("> "))
     print("Credit Card accepted")
-    return fname, lname, city, postal, ccard
+    return fname,  lname, city, postal, str(ccard)
+    
 
 '''
     This function is to be edited to achieve the task.
@@ -42,6 +49,9 @@ def enterCustomerInfo():
     This function may also be broken down further depending on your algorithm/approach
 '''
 def validatePostalCode(postal):
+    '''
+    Checks if the postal code inputted by the user is valid
+    '''
     folder = os.getcwd()
     filename = folder + "\\Wong Riley LuhnAlgorithnm\\postal_codes.csv"
     file = open(filename, "r")
@@ -66,6 +76,9 @@ def validatePostalCode(postal):
     This function may also be broken down further depending on your algorithm/approach
 '''
 def validateCreditCard(num):
+    '''
+    Checks whether the credit card inputted by the user is valid
+    '''
     sum1 = 0
     sum2 = 0
     reverse = str(num)[::-1]
@@ -100,14 +113,18 @@ def validateCreditCard(num):
     This function may also be broken down further depending on your algorithm/approach
 '''
 def generateCustomerDataFile():
+    '''
+    Creates a file if there is not already one already, if there is one, adds the customer info to it. 
+    '''
     from os.path import exists
     folder = os.getcwd()
     filename = folder + "\\Wong Riley LuhnAlgorithnm\\Users.csv"
     fileExists = exists(filename)
+    fname, lname, city, postal, ccard= info
     if fileExists == False:
         file = open(filename, "w")
-        file.writelines("ID, First Name, Last Name, City, Postal Code, CreditCard\n")
-        file.writelines("1. "+ info+"\n")
+        file.writelines("ID | First Name | Last Name | City | Postal Code | CreditCard\n")
+        file.writelines("1 | "+ fname +" | " + lname+" | " + city+" | " + postal+" | " + ccard+" | " +  "\n")
         file.close
     elif fileExists == True:
         file = open(filename, "r")
@@ -115,9 +132,8 @@ def generateCustomerDataFile():
         lineCount = int(len(line))
         file.close
         file = open(filename, "a")
-        id = str(lineCount) + ". "
-        print(id)
-        file.writelines(id + info +"\n")
+        id = str(lineCount) + " | "
+        file.writelines(id + fname+" | " + lname+" | " + city+" | " + postal+" | " + ccard+" | " + "\n")
         file.close
 
     #fileName = folder + "\\python\\Wong Riley LuhnAlgorithnm\\Users\\" + str(count) + ".text"
@@ -152,7 +168,7 @@ while userInput != exitCondition:
     if userInput == enterCustomerOption:
         # Only the line below may be editted based on the parameter list and how you design the method return
         # Any necessary variables may be added to this if section, but nowhere else in the code
-        info = str(enterCustomerInfo())
+        info = enterCustomerInfo()
 
     elif userInput == generateCustomerOption: 
         # Only the line below may be editted based on the parameter list and how you design the method return
