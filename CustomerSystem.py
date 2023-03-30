@@ -183,6 +183,8 @@ while userInput != exitCondition:
         # Only the line below may be editted based on the parameter list and how you design the method return
         generateCustomerDataFile()
         print("User has been added")
+    elif userInput == exitCondition:
+        exitCondition = 9
     else:
         print("Please type in a valid option (A number from 1-9)")
 
