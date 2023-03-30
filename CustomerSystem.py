@@ -38,7 +38,7 @@ def enterCustomerInfo():
             break
         else:
             print("Your credit card was not valid, please try again")
-    return fname, lname, city, postal, ccard
+    return fname,", ", lname,", ", city, ", ", postal, ", ", str(ccard)
 
 '''
     This function is to be edited to achieve the task.
@@ -52,7 +52,6 @@ def validatePostalCode(postal):
     file = open(filename, "r")
     line = file.readlines()
     a = len(line)
-    print(postal[:3])
     if len(postal)<3:
         return False
     else:
@@ -106,11 +105,24 @@ def validateCreditCard(num):
     This function may also be broken down further depending on your algorithm/approach
 '''
 def generateCustomerDataFile():
+    from os.path import exists
     folder = os.getcwd()
     filename = folder + "\\Wong Riley LuhnAlgorithnm\\Users.csv"
-    file = open(filename, "w")
-    file.writelines(info)
-    file.close
+    fileExists = exists(filename)
+    if fileExists == False:
+        file = open(filename, "w")
+        file.writelines("ID, First Name, Last Name, Postal Code, CreditCard\n")
+        file.writelines("1. ",info)
+        file.close
+    elif fileExists == True:
+        file = open(filename, "r")
+        line = file.readlines()
+        lineCount = int(len(line))
+        id = str((lineCount + 1))
+        file.close
+        file = open(filename, "a")
+        file.writelines(id + info)
+        file.close
 
     #fileName = folder + "\\python\\Wong Riley LuhnAlgorithnm\\Users\\" + str(count) + ".text"
     #file = open(fileName, "w")
@@ -149,7 +161,7 @@ while userInput != exitCondition:
     elif userInput == generateCustomerOption: 
         # Only the line below may be editted based on the parameter list and how you design the method return
         generateCustomerDataFile()
-
+        print("User has been added")
     else:
         print("Please type in a valid option (A number from 1-9)")
 
