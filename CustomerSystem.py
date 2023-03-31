@@ -86,7 +86,7 @@ def validatePostalCode(postal):
 '''
 def validateCreditCard(num):
     '''
-    Checks whether the credit card inputted by the user is valid
+    Checks whether the credit card inputted by the user is valid by applying LuhnAlgorithnm
     '''
     sum1 = 0
     sum2 = 0
@@ -123,7 +123,7 @@ def validateCreditCard(num):
 '''
 def generateCustomerDataFile():
     '''
-    Creates a file if there is not already one already, if there is one, adds the customer info to it. 
+    Creates a file if there is not already one already and adds the user's info to it, if there is one, adds the customer info to it. 
     '''
     from os.path import exists
     folder = os.getcwd()
@@ -144,10 +144,6 @@ def generateCustomerDataFile():
         id = str(lineCount) + " | "
         file.writelines(id + fname+" | " + lname+" | " + city+" | " + postal+" | " + ccard+" | " + "\n")
         file.close
-
-    #fileName = folder + "\\python\\Wong Riley LuhnAlgorithnm\\Users\\" + str(count) + ".text"
-    #file = open(fileName, "w")
-    #file.writelines(enterCustomerInfo())
 
 ####################################################################
 #       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         #
